@@ -52,6 +52,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -168,8 +170,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DrugsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PrescriptionController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -178,6 +183,30 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="SUSLMediDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SUSLMediDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SUSLMediDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SUSLMediDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SUSLMediDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SUSLMediDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="tb_drugs.cs">
+      <DependentUpon>SUSLMediDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_prescription.cs">
+      <DependentUpon>SUSLMediDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_student.cs">
+      <DependentUpon>SUSLMediDataModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -200,6 +229,16 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="SUSLMediDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SUSLMediDataModel.edmx</DependentUpon>
+      <LastGenOutput>SUSLMediDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="SUSLMediDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SUSLMediDataModel.edmx</DependentUpon>
+      <LastGenOutput>SUSLMediDataModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -234,6 +273,28 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <EntityDeploy Include="SUSLMediDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SUSLMediDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="SUSLMediDataModel.edmx.diagram">
+      <DependentUpon>SUSLMediDataModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Views\Student\Create.cshtml" />
+    <Content Include="Views\Student\Delete.cshtml" />
+    <Content Include="Views\Student\Details.cshtml" />
+    <Content Include="Views\Student\Edit.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Drugs\Create.cshtml" />
+    <Content Include="Views\Drugs\Delete.cshtml" />
+    <Content Include="Views\Drugs\Details.cshtml" />
+    <Content Include="Views\Drugs\Edit.cshtml" />
+    <Content Include="Views\Drugs\Index.cshtml" />
+    <Content Include="Views\Prescription\Create.cshtml" />
+    <Content Include="Views\Prescription\Delete.cshtml" />
+    <Content Include="Views\Prescription\Details.cshtml" />
+    <Content Include="Views\Prescription\Edit.cshtml" />
+    <Content Include="Views\Prescription\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -245,6 +306,9 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

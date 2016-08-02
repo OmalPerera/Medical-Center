@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="susl_medicalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_drugs">
+          <Key>
+            <PropertyRef Name="drug_code" />
+          </Key>
+          <Property Name="drug_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="drug_code" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="drug_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="drug_availabale_qty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_prescription">
+          <Key>
+            <PropertyRef Name="presc_code" />
+          </Key>
+          <Property Name="presc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="presc_code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="presc_date" Type="datetime" Nullable="false" />
+          <Property Name="presc_stu_reg_no" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="presc_drus_Issued" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="tb_student">
+          <Key>
+            <PropertyRef Name="stu_reg_number" />
+          </Key>
+          <Property Name="stu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stu_reg_number" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="stu_first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="stu_last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="stu_dob" Type="date" />
+        </EntityType>
+        <Association Name="FK_tb_presc_drusissued_tb_drugs_drugcode">
+          <End Role="tb_drugs" Type="Self.tb_drugs" Multiplicity="0..1" />
+          <End Role="tb_prescription" Type="Self.tb_prescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_drugs">
+              <PropertyRef Name="drug_code" />
+            </Principal>
+            <Dependent Role="tb_prescription">
+              <PropertyRef Name="presc_drus_Issued" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_presc_regno_tb_stu_regno">
+          <End Role="tb_student" Type="Self.tb_student" Multiplicity="1" />
+          <End Role="tb_prescription" Type="Self.tb_prescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_student">
+              <PropertyRef Name="stu_reg_number" />
+            </Principal>
+            <Dependent Role="tb_prescription">
+              <PropertyRef Name="presc_stu_reg_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="susl_medicalModelStoreContainer">
+          <EntitySet Name="tb_drugs" EntityType="Self.tb_drugs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_prescription" EntityType="Self.tb_prescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_student" EntityType="Self.tb_student" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tb_presc_drusissued_tb_drugs_drugcode" Association="Self.FK_tb_presc_drusissued_tb_drugs_drugcode">
+            <End Role="tb_drugs" EntitySet="tb_drugs" />
+            <End Role="tb_prescription" EntitySet="tb_prescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_presc_regno_tb_stu_regno" Association="Self.FK_tb_presc_regno_tb_stu_regno">
+            <End Role="tb_student" EntitySet="tb_student" />
+            <End Role="tb_prescription" EntitySet="tb_prescription" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="susl_medicalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tb_drugs">
+          <Key>
+            <PropertyRef Name="drug_code" />
+          </Key>
+          <Property Name="drug_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="drug_code" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="drug_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="drug_availabale_qty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_prescription" Relationship="Self.FK_tb_presc_drusissued_tb_drugs_drugcode" FromRole="tb_drugs" ToRole="tb_prescription" />
+        </EntityType>
+        <EntityType Name="tb_prescription">
+          <Key>
+            <PropertyRef Name="presc_code" />
+          </Key>
+          <Property Name="presc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="presc_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="presc_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="presc_stu_reg_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="presc_drus_Issued" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_drugs" Relationship="Self.FK_tb_presc_drusissued_tb_drugs_drugcode" FromRole="tb_prescription" ToRole="tb_drugs" />
+          <NavigationProperty Name="tb_student" Relationship="Self.FK_tb_presc_regno_tb_stu_regno" FromRole="tb_prescription" ToRole="tb_student" />
+        </EntityType>
+        <EntityType Name="tb_student">
+          <Key>
+            <PropertyRef Name="stu_reg_number" />
+          </Key>
+          <Property Name="stu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stu_reg_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stu_first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stu_last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stu_dob" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tb_prescription" Relationship="Self.FK_tb_presc_regno_tb_stu_regno" FromRole="tb_student" ToRole="tb_prescription" />
+        </EntityType>
+        <Association Name="FK_tb_presc_drusissued_tb_drugs_drugcode">
+          <End Role="tb_drugs" Type="Self.tb_drugs" Multiplicity="0..1" />
+          <End Role="tb_prescription" Type="Self.tb_prescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_drugs">
+              <PropertyRef Name="drug_code" />
+            </Principal>
+            <Dependent Role="tb_prescription">
+              <PropertyRef Name="presc_drus_Issued" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_presc_regno_tb_stu_regno">
+          <End Role="tb_student" Type="Self.tb_student" Multiplicity="1" />
+          <End Role="tb_prescription" Type="Self.tb_prescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_student">
+              <PropertyRef Name="stu_reg_number" />
+            </Principal>
+            <Dependent Role="tb_prescription">
+              <PropertyRef Name="presc_stu_reg_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="susl_medicalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_drugs" EntityType="Self.tb_drugs" />
+          <EntitySet Name="tb_prescription" EntityType="Self.tb_prescription" />
+          <EntitySet Name="tb_student" EntityType="Self.tb_student" />
+          <AssociationSet Name="FK_tb_presc_drusissued_tb_drugs_drugcode" Association="Self.FK_tb_presc_drusissued_tb_drugs_drugcode">
+            <End Role="tb_drugs" EntitySet="tb_drugs" />
+            <End Role="tb_prescription" EntitySet="tb_prescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_presc_regno_tb_stu_regno" Association="Self.FK_tb_presc_regno_tb_stu_regno">
+            <End Role="tb_student" EntitySet="tb_student" />
+            <End Role="tb_prescription" EntitySet="tb_prescription" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="susl_medicalModelStoreContainer" CdmEntityContainer="susl_medicalEntities">
+          <EntitySetMapping Name="tb_drugs">
+            <EntityTypeMapping TypeName="susl_medicalModel.tb_drugs">
+              <MappingFragment StoreEntitySet="tb_drugs">
+                <ScalarProperty Name="drug_id" ColumnName="drug_id" />
+                <ScalarProperty Name="drug_code" ColumnName="drug_code" />
+                <ScalarProperty Name="drug_name" ColumnName="drug_name" />
+                <ScalarProperty Name="drug_availabale_qty" ColumnName="drug_availabale_qty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_prescription">
+            <EntityTypeMapping TypeName="susl_medicalModel.tb_prescription">
+              <MappingFragment StoreEntitySet="tb_prescription">
+                <ScalarProperty Name="presc_id" ColumnName="presc_id" />
+                <ScalarProperty Name="presc_code" ColumnName="presc_code" />
+                <ScalarProperty Name="presc_date" ColumnName="presc_date" />
+                <ScalarProperty Name="presc_stu_reg_no" ColumnName="presc_stu_reg_no" />
+                <ScalarProperty Name="presc_drus_Issued" ColumnName="presc_drus_Issued" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_student">
+            <EntityTypeMapping TypeName="susl_medicalModel.tb_student">
+              <MappingFragment StoreEntitySet="tb_student">
+                <ScalarProperty Name="stu_id" ColumnName="stu_id" />
+                <ScalarProperty Name="stu_reg_number" ColumnName="stu_reg_number" />
+                <ScalarProperty Name="stu_first_name" ColumnName="stu_first_name" />
+                <ScalarProperty Name="stu_last_name" ColumnName="stu_last_name" />
+                <ScalarProperty Name="stu_dob" ColumnName="stu_dob" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
