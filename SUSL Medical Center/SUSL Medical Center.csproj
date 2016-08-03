@@ -211,6 +211,12 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\customCSS.css" />
+    <Content Include="Content\Images\dottile.png" />
+    <Content Include="Content\Images\homepage_tile.png" />
+    <Content Include="Content\Images\home_bg.jpg" />
+    <Content Include="Content\Images\home_bg_greened.png" />
+    <Content Include="Content\Images\medical_records.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -295,6 +301,7 @@
     <Content Include="Views\Prescription\Details.cshtml" />
     <Content Include="Views\Prescription\Edit.cshtml" />
     <Content Include="Views\Prescription\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutNoMargin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
