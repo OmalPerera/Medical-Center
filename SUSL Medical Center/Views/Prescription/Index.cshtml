@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SUSL_Medical_Center.tb_prescription>
+
+@{
+    ViewBag.Title = "Medical Records";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a class="btn btn-theme" href="./Create">Create</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.presc_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.presc_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tb_drugs.drug_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tb_student.stu_first_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.presc_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.presc_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tb_drugs.drug_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tb_student.stu_first_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.presc_code }) |
+            @Html.ActionLink("Details", "Details", new { id=item.presc_code }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.presc_code })
+        </td>
+    </tr>
+}
+
+</table>
