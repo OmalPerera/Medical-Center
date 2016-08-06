@@ -15,9 +15,35 @@ namespace SUSL_Medical_Center.Controllers
         private susl_medicalEntities db = new susl_medicalEntities();
 
         // GET: Drugs
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
-            return View(db.tb_drugs.ToList());
+
+            //newly added code
+            ViewBag.CodeSortParm = String.IsNullOrEmpty(sortOrder) ? "code_desc" : "";
+            ViewBag.NameSortParm = sortOrder == "name" ? "name_desc" : "name";
+            var drugs = from d in db.tb_drugs
+                           select d;
+            switch (sortOrder)
+            {
+                case "code_desc":
+                    drugs = drugs.OrderByDescending(d => d.drug_code);
+                    break;
+                case "name":
+                    drugs = drugs.OrderBy(d => d.drug_name);
+                    break;
+                case "name_desc":
+                    drugs = drugs.OrderByDescending(d => d.drug_name);
+                    break;
+                default:
+                    drugs = drugs.OrderBy(d => d.drug_code);
+                    break;
+            }
+            return View(drugs.ToList());
+
+            //newly added code
+
+
+            //return View(db.tb_drugs.ToList());
         }
 
         // GET: Drugs/Details/5

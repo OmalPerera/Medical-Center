@@ -17,7 +17,14 @@ namespace SUSL_Medical_Center.Controllers
         // GET: Student
         public ActionResult Index()
         {
-            return View(db.tb_student.ToList());
+            return View();
+        }
+
+        public JsonResult Getstuinfo()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var info = db.tb_student.ToList();
+            return Json(info, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Student/Details/5

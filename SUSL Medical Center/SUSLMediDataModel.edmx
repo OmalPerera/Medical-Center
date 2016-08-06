@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="susl_medicalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="susl_medicalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tb_drugs">
           <Key>
             <PropertyRef Name="drug_code" />
@@ -34,6 +34,15 @@
           <Property Name="stu_last_name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="stu_dob" Type="date" />
         </EntityType>
+        <EntityType Name="tb_test">
+          <Key>
+            <PropertyRef Name="col_one" />
+          </Key>
+          <Property Name="col_one" Type="int" Nullable="false" />
+          <Property Name="col_two" Type="varchar" MaxLength="50" />
+          <Property Name="col_three" Type="varchar" MaxLength="50" />
+          <Property Name="col_four" Type="varchar" MaxLength="50" />
+        </EntityType>
         <Association Name="FK_tb_presc_drusissued_tb_drugs_drugcode">
           <End Role="tb_drugs" Type="Self.tb_drugs" Multiplicity="0..1" />
           <End Role="tb_prescription" Type="Self.tb_prescription" Multiplicity="*" />
@@ -62,6 +71,7 @@
           <EntitySet Name="tb_drugs" EntityType="Self.tb_drugs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_prescription" EntityType="Self.tb_prescription" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_student" EntityType="Self.tb_student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_test" EntityType="Self.tb_test" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_tb_presc_drusissued_tb_drugs_drugcode" Association="Self.FK_tb_presc_drusissued_tb_drugs_drugcode">
             <End Role="tb_drugs" EntitySet="tb_drugs" />
             <End Role="tb_prescription" EntitySet="tb_prescription" />
@@ -71,8 +81,7 @@
             <End Role="tb_prescription" EntitySet="tb_prescription" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="susl_medicalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -145,7 +154,17 @@
             <End Role="tb_student" EntitySet="tb_student" />
             <End Role="tb_prescription" EntitySet="tb_prescription" />
           </AssociationSet>
+          <EntitySet Name="tb_test" EntityType="susl_medicalModel.tb_test" />
         </EntityContainer>
+        <EntityType Name="tb_test">
+          <Key>
+            <PropertyRef Name="col_one" />
+          </Key>
+          <Property Name="col_one" Type="Int32" Nullable="false" />
+          <Property Name="col_two" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="col_three" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="col_four" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -181,6 +200,16 @@
                 <ScalarProperty Name="stu_first_name" ColumnName="stu_first_name" />
                 <ScalarProperty Name="stu_last_name" ColumnName="stu_last_name" />
                 <ScalarProperty Name="stu_dob" ColumnName="stu_dob" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_test">
+            <EntityTypeMapping TypeName="susl_medicalModel.tb_test">
+              <MappingFragment StoreEntitySet="tb_test">
+                <ScalarProperty Name="col_four" ColumnName="col_four" />
+                <ScalarProperty Name="col_three" ColumnName="col_three" />
+                <ScalarProperty Name="col_two" ColumnName="col_two" />
+                <ScalarProperty Name="col_one" ColumnName="col_one" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

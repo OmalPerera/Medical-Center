@@ -1,32 +1,38 @@
 ﻿@model IEnumerable<SUSL_Medical_Center.tb_drugs>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Drug Records";
 }
 
-<h2>Index</h2>
+<h2 style="color:#333; padding-top:20px">Drug Records</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div style="text-align:right">
+    <p>
+        <a class="btn btn-theme" href="./Drugs/Create">
+            <span class="glyphicon glyphicon-user">&nbsp;</span>CREATE
+        </a>
+
+    </p>
+</div>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.drug_id)
+            @Html.ActionLink("Drug Code", "Index", new { sortOrder = ViewBag.CodeSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.drug_name)
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.drug_availabale_qty)
+            Available Quantity 
         </th>
         <th></th>
     </tr>
 
+
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.drug_id)
+            @Html.DisplayFor(modelItem => item.drug_code)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.drug_name)
