@@ -33,5 +33,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tb_test">
+      <EntityTypeMapping TypeName="susl_medicalModel.tb_test">
+        <MappingFragment StoreEntitySet="tb_test">
+          <ScalarProperty Name="col_four" ColumnName="col_four" />
+          <ScalarProperty Name="col_three" ColumnName="col_three" />
+          <ScalarProperty Name="col_two" ColumnName="col_two" />
+          <ScalarProperty Name="col_one" ColumnName="col_one" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

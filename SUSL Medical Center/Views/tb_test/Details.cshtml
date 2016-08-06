@@ -1,0 +1,42 @@
+﻿@model SUSL_Medical_Center.tb_test
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tb_test</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.col_two)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.col_two)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.col_three)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.col_three)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.col_four)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.col_four)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.col_one }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
