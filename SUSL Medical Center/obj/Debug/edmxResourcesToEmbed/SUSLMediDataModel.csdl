@@ -69,5 +69,15 @@
       <End Role="tb_student" EntitySet="tb_student" />
       <End Role="tb_prescription" EntitySet="tb_prescription" />
     </AssociationSet>
+    <EntitySet Name="tb_test" EntityType="susl_medicalModel.tb_test" />
   </EntityContainer>
+  <EntityType Name="tb_test">
+    <Key>
+      <PropertyRef Name="col_one" />
+    </Key>
+    <Property Name="col_one" Type="Int32" Nullable="false" />
+    <Property Name="col_two" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="col_three" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="col_four" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

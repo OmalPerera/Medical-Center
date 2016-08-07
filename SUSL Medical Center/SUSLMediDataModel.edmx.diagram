@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="susl_medicalModel.tb_student" Width="1.5" PointX="5.875" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="susl_medicalModel.FK_tb_presc_drusissued_tb_drugs_drugcode" ManuallyRouted="false" />
         <AssociationConnector Association="susl_medicalModel.FK_tb_presc_regno_tb_stu_regno" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="susl_medicalModel.tb_test" Width="1.5" PointX="7.875" PointY="1.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

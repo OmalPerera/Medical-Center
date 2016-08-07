@@ -28,5 +28,6 @@ namespace SUSL_Medical_Center
         public virtual DbSet<tb_drugs> tb_drugs { get; set; }
         public virtual DbSet<tb_prescription> tb_prescription { get; set; }
         public virtual DbSet<tb_student> tb_student { get; set; }
+        public virtual DbSet<tb_test> tb_test { get; set; }
     }
 }

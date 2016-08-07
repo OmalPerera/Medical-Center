@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SUSL_Medical_Center.tb_test>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+<div ng-app="myApp">
+    <div ng-controller="tstctrl">
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                    col_one
+                </th>
+                <th>
+                    col_second
+                </th>
+                <th>
+                    col_three
+                </th>
+                <th>
+                    col_four
+                </th>
+            </tr>
+            <tr ng-repeat="atst in tstScope">
+                <td>{{atst.col_one}}</td>
+                <td>{{atst.col_two}}</td>
+                <td>{{atst.col_three}}</td>
+                <td>{{atst.col_four}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/app/tstControllers.js"></script>
+}
+

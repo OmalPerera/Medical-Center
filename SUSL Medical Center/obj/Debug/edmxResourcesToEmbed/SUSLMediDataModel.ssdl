@@ -29,6 +29,15 @@
     <Property Name="stu_last_name" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="stu_dob" Type="date" />
   </EntityType>
+  <EntityType Name="tb_test">
+    <Key>
+      <PropertyRef Name="col_one" />
+    </Key>
+    <Property Name="col_one" Type="int" Nullable="false" />
+    <Property Name="col_two" Type="varchar" MaxLength="50" />
+    <Property Name="col_three" Type="varchar" MaxLength="50" />
+    <Property Name="col_four" Type="varchar" MaxLength="50" />
+  </EntityType>
   <Association Name="FK_tb_presc_drusissued_tb_drugs_drugcode">
     <End Role="tb_drugs" Type="Self.tb_drugs" Multiplicity="0..1" />
     <End Role="tb_prescription" Type="Self.tb_prescription" Multiplicity="*" />
@@ -57,6 +66,7 @@
     <EntitySet Name="tb_drugs" EntityType="Self.tb_drugs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_prescription" EntityType="Self.tb_prescription" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_student" EntityType="Self.tb_student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_test" EntityType="Self.tb_test" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_tb_presc_drusissued_tb_drugs_drugcode" Association="Self.FK_tb_presc_drusissued_tb_drugs_drugcode">
       <End Role="tb_drugs" EntitySet="tb_drugs" />
       <End Role="tb_prescription" EntitySet="tb_prescription" />
