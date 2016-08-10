@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="susl_medicalModel1StoreContainer" CdmEntityContainer="susl_medicalEntities1">
+    <EntitySetMapping Name="tb_drugs">
+      <EntityTypeMapping TypeName="susl_medicalModel1.tb_drugs">
+        <MappingFragment StoreEntitySet="tb_drugs">
+          <ScalarProperty Name="drug_id" ColumnName="drug_id" />
+          <ScalarProperty Name="drug_code" ColumnName="drug_code" />
+          <ScalarProperty Name="drug_name" ColumnName="drug_name" />
+          <ScalarProperty Name="drug_availabale_qty" ColumnName="drug_availabale_qty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_prescription">
+      <EntityTypeMapping TypeName="susl_medicalModel1.tb_prescription">
+        <MappingFragment StoreEntitySet="tb_prescription">
+          <ScalarProperty Name="presc_id" ColumnName="presc_id" />
+          <ScalarProperty Name="presc_code" ColumnName="presc_code" />
+          <ScalarProperty Name="presc_date" ColumnName="presc_date" />
+          <ScalarProperty Name="presc_stu_reg_no" ColumnName="presc_stu_reg_no" />
+          <ScalarProperty Name="presc_drus_Issued" ColumnName="presc_drus_Issued" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_student">
+      <EntityTypeMapping TypeName="susl_medicalModel1.tb_student">
+        <MappingFragment StoreEntitySet="tb_student">
+          <ScalarProperty Name="stu_id" ColumnName="stu_id" />
+          <ScalarProperty Name="stu_reg_number" ColumnName="stu_reg_number" />
+          <ScalarProperty Name="stu_first_name" ColumnName="stu_first_name" />
+          <ScalarProperty Name="stu_last_name" ColumnName="stu_last_name" />
+          <ScalarProperty Name="stu_dob" ColumnName="stu_dob" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_test">
+      <EntityTypeMapping TypeName="susl_medicalModel1.tb_test">
+        <MappingFragment StoreEntitySet="tb_test">
+          <ScalarProperty Name="col_one" ColumnName="col_one" />
+          <ScalarProperty Name="col_two" ColumnName="col_two" />
+          <ScalarProperty Name="col_three" ColumnName="col_three" />
+          <ScalarProperty Name="col_four" ColumnName="col_four" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -51,6 +51,9 @@ namespace SUSL_Medical_Center.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "presc_id,presc_code,presc_date,presc_stu_reg_no,presc_drus_Issued")] tb_prescription tb_prescription)
         {
+            Guid guid = Guid.NewGuid();
+            string presc_id = "P"+guid.ToString();
+
             if (ModelState.IsValid)
             {
                 db.tb_prescription.Add(tb_prescription);

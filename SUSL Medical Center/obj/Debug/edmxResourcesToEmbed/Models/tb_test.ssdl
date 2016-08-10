@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="susl_medicalModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tb_drugs">
+    <Key>
+      <PropertyRef Name="drug_code" />
+    </Key>
+    <Property Name="drug_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="drug_code" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="drug_name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="drug_availabale_qty" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tb_prescription">
+    <Key>
+      <PropertyRef Name="presc_code" />
+    </Key>
+    <Property Name="presc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="presc_code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="presc_date" Type="datetime" Nullable="false" />
+    <Property Name="presc_stu_reg_no" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="presc_drus_Issued" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="tb_student">
+    <Key>
+      <PropertyRef Name="stu_reg_number" />
+    </Key>
+    <Property Name="stu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="stu_reg_number" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="stu_first_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="stu_last_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="stu_dob" Type="date" />
+  </EntityType>
+  <EntityType Name="tb_test">
+    <Key>
+      <PropertyRef Name="col_one" />
+    </Key>
+    <Property Name="col_one" Type="int" Nullable="false" />
+    <Property Name="col_two" Type="varchar" MaxLength="50" />
+    <Property Name="col_three" Type="varchar" MaxLength="50" />
+    <Property Name="col_four" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_tb_presc_drusissued_tb_drugs_drugcode">
+    <End Role="tb_drugs" Type="Self.tb_drugs" Multiplicity="0..1" />
+    <End Role="tb_prescription" Type="Self.tb_prescription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_drugs">
+        <PropertyRef Name="drug_code" />
+      </Principal>
+      <Dependent Role="tb_prescription">
+        <PropertyRef Name="presc_drus_Issued" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_presc_regno_tb_stu_regno">
+    <End Role="tb_student" Type="Self.tb_student" Multiplicity="1" />
+    <End Role="tb_prescription" Type="Self.tb_prescription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_student">
+        <PropertyRef Name="stu_reg_number" />
+      </Principal>
+      <Dependent Role="tb_prescription">
+        <PropertyRef Name="presc_stu_reg_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="susl_medicalModel1StoreContainer">
+    <EntitySet Name="tb_drugs" EntityType="Self.tb_drugs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_prescription" EntityType="Self.tb_prescription" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_student" EntityType="Self.tb_student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_test" EntityType="Self.tb_test" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tb_presc_drusissued_tb_drugs_drugcode" Association="Self.FK_tb_presc_drusissued_tb_drugs_drugcode">
+      <End Role="tb_drugs" EntitySet="tb_drugs" />
+      <End Role="tb_prescription" EntitySet="tb_prescription" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_presc_regno_tb_stu_regno" Association="Self.FK_tb_presc_regno_tb_stu_regno">
+      <End Role="tb_student" EntitySet="tb_student" />
+      <End Role="tb_prescription" EntitySet="tb_prescription" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
