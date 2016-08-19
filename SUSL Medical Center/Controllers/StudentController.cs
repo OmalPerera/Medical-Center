@@ -17,16 +17,16 @@ namespace SUSL_Medical_Center.Controllers
         // GET: Student
         public ActionResult Index()
         {
-            return View();
+            return View(db.tb_student.ToList());
         }
-
+/*
         public JsonResult Getstuinfo()
         {
             db.Configuration.ProxyCreationEnabled = false;
             var info = db.tb_student.ToList();
             return Json(info, JsonRequestBehavior.AllowGet);
         }
-
+*/
         // GET: Student/Details/5
         public ActionResult Details(string id)
         {

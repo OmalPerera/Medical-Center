@@ -218,7 +218,6 @@
     <Content Include="Content\customCSS.css" />
     <Content Include="Content\Images\dottile.png" />
     <Content Include="Content\Images\homepage_tile.png" />
-    <Content Include="Content\Images\home_bg.jpg" />
     <Content Include="Content\Images\home_bg_greened.png" />
     <Content Include="Content\Images\medical_records.png" />
     <Content Include="Content\ui-bootstrap-csp.css" />

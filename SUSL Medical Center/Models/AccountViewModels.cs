@@ -65,8 +65,9 @@ namespace SUSL_Medical_Center.Models
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+        //[EmailAddress]
+        [RegularExpression(@"^\d{2}$")]
+        [Display(Name = "University Registration Number")]
         public string Email { get; set; }
 
         [Required]
